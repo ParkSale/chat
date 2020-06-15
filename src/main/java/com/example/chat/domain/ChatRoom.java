@@ -22,7 +22,8 @@ public class ChatRoom {
         return chatRoom;
     }
 
-    public void handleMessage(WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
+    public void handleMessage(WebSocketSession session, ChatMessage chatMessage,
+                              ObjectMapper objectMapper) throws IOException {
         if(chatMessage.getType() == MessageType.ENTER){
             sessions.add(session);
             chatMessage.setMessage(chatMessage.getWriter() + "님이 입장하셨습니다.");
@@ -38,7 +39,8 @@ public class ChatRoom {
     }
 
     private void send(ChatMessage chatMessage, ObjectMapper objectMapper) throws IOException {
-        TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(chatMessage.getMessage()));
+        TextMessage textMessage = new TextMessage(objectMapper.
+                                    writeValueAsString(chatMessage.getMessage()));
         for(WebSocketSession sess : sessions){
             sess.sendMessage(textMessage);
         }

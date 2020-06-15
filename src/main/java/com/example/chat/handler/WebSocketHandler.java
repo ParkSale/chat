@@ -20,16 +20,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
     private final ObjectMapper objectMapper;
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        super.afterConnectionEstablished(session);
-    }
-
-    @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        super.afterConnectionClosed(session, status);
-    }
-
-    @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         log.info("메세지 전송 = {} : {}",session,message.getPayload());
         String msg = message.getPayload();
